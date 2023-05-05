@@ -20,21 +20,16 @@ def email_lookup():
 # take that email and lookup in business search
 def business_search():
     email = email_lookup()
-    # email = input("Enter email address: ")
-    # email = email_lookup()
     email = str(email)
     email_split = email.split("@")[1]
-    # print(email_split)
     # search query
     query = f"{email_split} business"
     # search for query
     for j in search(query, tld="co.in", num=10, stop=10, pause=2):
-    # search() got an unexpected keyword argument 'tld'
         print(j)
 
 # take that business name and lookup in business search
 def business_data():
-    # business = input("Enter business name: ")
     business = email_lookup().split("@")[1]
     # scrape to get business name using open data
     url = 'https://data.lacity.org/resource/6rrh-rzua.json?'+ 'business_name=' + str(business.upper())
@@ -43,5 +38,3 @@ def business_data():
     if response.status_code == 200:
         json_data = response.json()
         print(json_data)
-
-business_data()
